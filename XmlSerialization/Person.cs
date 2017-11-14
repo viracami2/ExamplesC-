@@ -16,24 +16,24 @@
 #region Using Directives
 
 using System;
-using System.Xml.Serialization; 
+using System.Xml.Serialization;
 
 #endregion
 
 namespace XmlSerialization
 {
-   /// <summary>
-   /// This is an example class that we will serialize to XML
-   /// </summary>
-   
-   public abstract class Person
-   {
-      #region Private Members
+    /// <summary>
+    /// This is an example class that we will serialize to XML
+    /// </summary>
 
-      // Private properties/members are not serialized, only public properties/members
-      protected string _first;
-      protected string _last;
-      protected int _age;
+    public abstract class Person
+    {
+        #region Private Members
+
+        // Private properties/members are not serialized, only public properties/members
+        protected string _first;
+        protected string _last;
+        protected int _age;
 
 
         #endregion
@@ -45,55 +45,55 @@ namespace XmlSerialization
         /// The XML serializer requires a public default constructor
         /// </summary>
         public Person()
-      {
-      }
+        {
+        }
 
-      /// <summary>
-      /// You can provide other constructors, the XML serializer will
-      /// not use them.
-      /// </summary>
-      
-      #endregion
+        /// <summary>
+        /// You can provide other constructors, the XML serializer will
+        /// not use them.
+        /// </summary>
 
-      #region Public Properties
+        #endregion
 
-      [XmlElement( ElementName = "First" )]
-      public string FirstName
-      {
-         get { return _first; }
-         set { _first = value; }
-      }
+        #region Public Properties
 
-      [XmlElement( ElementName = "Last" )]
-      public string LastName
-      {
-         get { return _last; }
-         set { _last = value; }
-      }
+        [XmlElement(ElementName = "First")]
+        public string FirstName
+        {
+            get { return _first; }
+            set { _first = value; }
+        }
 
-      [XmlAttribute]
-      public int Age
-      {
-         get { return _age; }
-         set { _age = value; }
-      }
+        [XmlElement(ElementName = "Last")]
+        public string LastName
+        {
+            get { return _last; }
+            set { _last = value; }
+        }
+
+        [XmlAttribute]
+        public int Age
+        {
+            get { return _age; }
+            set { _age = value; }
+        }
 
 
-      [XmlIgnore]
-      public string StripperName
-      {
-         get { return StripperNameGenerator.GetStripperName( FirstName, LastName ); }
-      }
+        //[XmlIgnore]
+        //public string StripperName
+        //{
+        //   get { return StripperNameGenerator.GetStripperName( FirstName, LastName ); }
+        //}
 
-      #endregion
+        #endregion
 
-      #region Methods
+        #region Methods
 
-      public override string ToString()
-      {
-         return string.Format( "Name: {0} {1}{2}Stripper name:{3}{2}Address:{2}{4}", FirstName, LastName, Environment.NewLine, StripperName );
-      }
+        public override string ToString()
+        {
+            return string.Format("Name: {0} {1}{2}Stripper name:{3}{2}Address:{2}{4}", FirstName, LastName, Environment.NewLine);
+        }
 
-      #endregion
-   }
+        #endregion
+    }
 }

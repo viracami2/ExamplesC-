@@ -15,8 +15,12 @@
 
 #region Using Directives
 
+using Newtonsoft.Json.Linq;
 using System;
 using System.IO;
+using System.Xml.Linq;
+using System.Xml.Serialization;
+using XmlSerialization.Utility;
 
 #endregion
 
@@ -59,30 +63,40 @@ namespace XmlSerialization
             persona.plus(0.0);
             Console.WriteLine(persona.Valor);
 
-            // var  strings = GetFormattedNumberStandard("propna");
-
-            // Create and serialize out a person to XML
-            //Person person = Person( "Rob", "Prouse", 39, new Address( "123 Candyland Dr", "Somewhere", "Ontario", "Canada", "A1B 2C3" ) );
 
 
 
-            //Console.WriteLine( "Before serialization: {0}", person );
-            //XmlSerializerHelper.Serialize<Person>( xmlFile, person );
 
-            // Deserialize the person from XML
-            Console.WriteLine();
-            Person restored = XmlSerializerHelper.Deserialize<Person>(xmlFile);
-            Console.WriteLine("After deserialization: {0}", restored);
+            XmlSerializer serializer = new XmlSerializer(typeof(Person));
+            //toca referenciar  System.Xml.Linq
+            var path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, $@"App_Data/{xmlFile}");
+            if (!File.Exists(path)) { throw new SystemException($"File not found: '{path}'"); }
+
+            XDocument libroRaiz = XDocument.Load(path, LoadOptions.None);
+
+            JObject dato = libroRaiz.ToString().XmlAJson(true);
+
+            //Manera de obtener datos
+            var nombreUno = dato["Persons"]["Person"][2]["First"].ToString();
+            var nombreDos = dato["Persons"]["Person"][1]["First"].ToString();
+            foreach (var item in dato["Persons"]["Person"])
+            {
+                Console.WriteLine("Nombre : ", item["First"]);
+            }
+
+            //Person restored =
+            //XmlSerializerHelper.Deserialize<Person>(xmlFile);
+            //Console.WriteLine("After deserialization: {0}", restored);
 
             // Let's look at the generated XML
             Console.WriteLine("----------------------------------");
-            using (StreamReader reader = new StreamReader(xmlFile))
-            {
-                while (!reader.EndOfStream)
-                {
-                    Console.WriteLine(reader.ReadLine());
-                }
-            }
+            //   using (StreamReader reader = new StreamReader(xmlFile))
+            //   {
+            //       while (!reader.EndOfStream)
+            //       {
+            //           Console.WriteLine(reader.ReadLine());
+            //       }
+            //   }
             Console.WriteLine();
 
             Console.WriteLine("Press enter to exit.");
