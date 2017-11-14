@@ -1,0 +1,12 @@
+C:\Users\vcastro\Downloads\xmlserialization\XmlSerialization\XmlSerialization\bin\Debug\XmlSerialization.exe
+C:\Users\vcastro\Downloads\xmlserialization\XmlSerialization\XmlSerialization\bin\Debug\XmlSerialization.pdb
+C:\Users\vcastro\Downloads\xmlserialization\XmlSerialization\XmlSerialization\obj\Debug\XmlSerialization.csprojResolveAssemblyReference.cache
+C:\Users\vcastro\Downloads\xmlserialization\XmlSerialization\XmlSerialization\obj\Debug\XmlSerialization.exe
+C:\Users\vcastro\Downloads\xmlserialization\XmlSerialization\XmlSerialization\obj\Debug\XmlSerialization.pdb
+C:\Users\vcastro\Downloads\xmlserialization\XmlSerialization\XmlSerialization\bin\Debug\XmlSerialization.exe.config
+C:\Users\vcastro\Documents\Documentos\Virra\proys\XmlSerialization\bin\Debug\XmlSerialization.exe.config
+C:\Users\vcastro\Documents\Documentos\Virra\proys\XmlSerialization\bin\Debug\XmlSerialization.exe
+C:\Users\vcastro\Documents\Documentos\Virra\proys\XmlSerialization\bin\Debug\XmlSerialization.pdb
+C:\Users\vcastro\Documents\Documentos\Virra\proys\XmlSerialization\obj\Debug\XmlSerialization.csprojResolveAssemblyReference.cache
+C:\Users\vcastro\Documents\Documentos\Virra\proys\XmlSerialization\obj\Debug\XmlSerialization.exe
+C:\Users\vcastro\Documents\Documentos\Virra\proys\XmlSerialization\obj\Debug\XmlSerialization.pdb

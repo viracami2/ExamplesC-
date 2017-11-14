@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Person xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Age="39" xmlns="http://alteridem.net/person">
+  <First>Rob</First>
+  <Last>Prouse</Last>
+  <Address>
+    <Street>123 Candyland Dr</Street>
+    <City>Somewhere</City>
+    <Province>Ontario</Province>
+    <Country>Canada</Country>
+    <PostalCode>A1B 2C3</PostalCode>
+  </Address>
+</Person>
