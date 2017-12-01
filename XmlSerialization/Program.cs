@@ -15,20 +15,19 @@
 
 #region Using Directives
 
-using Newtonsoft.Json.Linq;
 using System;
 using System.IO;
 using System.Xml.Linq;
 using System.Xml.Serialization;
-using XmlSerialization.Utility;
 
 #endregion
 
 namespace XmlSerialization
 {
-    class Program
+	class Program
     {
         private const string xmlFile = "person.xml";
+		string dat = "";
 
         #region Methods static
 
@@ -52,9 +51,13 @@ namespace XmlSerialization
 
         static void Main(string[] args)
         {
-            Ip ipMain = new Ip();
 
+
+            ///////////////////
+            Ip ipMain = new Ip();
+            var dato = nameof(ipMain.GetClientIP);// para obtener el nombre del metodo
             ipMain.GetClientIP();
+
 
 
             SaveCacheFirstAsyncStepExecuted();
@@ -74,15 +77,15 @@ namespace XmlSerialization
 
             XDocument libroRaiz = XDocument.Load(path, LoadOptions.None);
 
-            JObject dato = libroRaiz.ToString().XmlAJson(true);
+            //JObject dato = libroRaiz.ToString().XmlAJson(true);
 
             //Manera de obtener datos
-            var nombreUno = dato["Persons"]["Person"][2]["First"].ToString();
-            var nombreDos = dato["Persons"]["Person"][1]["First"].ToString();
-            foreach (var item in dato["Persons"]["Person"])
-            {
-                Console.WriteLine("Nombre : ", item["First"]);
-            }
+          //  var nombreUno = dato["Persons"]["Person"][2]["First"].ToString();
+          //  var nombreDos = dato["Persons"]["Person"][1]["First"].ToString();
+          //  foreach (var item in dato["Persons"]["Person"])
+          //  {
+          //      Console.WriteLine("Nombre : ", item["First"]);
+          //  }
 
             //Person restored =
             //XmlSerializerHelper.Deserialize<Person>(xmlFile);

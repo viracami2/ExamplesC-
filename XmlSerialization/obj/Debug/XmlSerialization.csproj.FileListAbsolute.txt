@@ -4,6 +4,7 @@ C:\Users\vcastro\Downloads\xmlserialization\XmlSerialization\XmlSerialization\ob
 C:\Users\vcastro\Downloads\xmlserialization\XmlSerialization\XmlSerialization\obj\Debug\XmlSerialization.exe
 C:\Users\vcastro\Downloads\xmlserialization\XmlSerialization\XmlSerialization\obj\Debug\XmlSerialization.pdb
 C:\Users\vcastro\Downloads\xmlserialization\XmlSerialization\XmlSerialization\bin\Debug\XmlSerialization.exe.config
+C:\Users\vcastro\Documents\Documentos\Virra\proys\XmlSerialization\obj\Debug\XmlSerialization.csprojResolveAssemblyReference.cache
 C:\Users\vcastro\Documents\Documentos\Virra\proys\XmlSerialization\bin\Debug\App_Data\person.xml
 C:\Users\vcastro\Documents\Documentos\Virra\proys\XmlSerialization\bin\Debug\XmlSerialization.exe.config
 C:\Users\vcastro\Documents\Documentos\Virra\proys\XmlSerialization\bin\Debug\XmlSerialization.exe
@@ -12,4 +13,3 @@ C:\Users\vcastro\Documents\Documentos\Virra\proys\XmlSerialization\bin\Debug\New
 C:\Users\vcastro\Documents\Documentos\Virra\proys\XmlSerialization\bin\Debug\Newtonsoft.Json.xml
 C:\Users\vcastro\Documents\Documentos\Virra\proys\XmlSerialization\obj\Debug\XmlSerialization.exe
 C:\Users\vcastro\Documents\Documentos\Virra\proys\XmlSerialization\obj\Debug\XmlSerialization.pdb
-C:\Users\vcastro\Documents\Documentos\Virra\proys\XmlSerialization\obj\Debug\XmlSerialization.csprojResolveAssemblyReference.cache
