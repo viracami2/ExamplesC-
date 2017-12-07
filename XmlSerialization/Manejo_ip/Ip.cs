@@ -30,6 +30,8 @@ namespace XmlSerialization
             {
                 Console.WriteLine(item.ToString());
             }
+
+
             string ConvertedDecimalNumber = 10000.0.ToString("C2", new CultureInfo("es-CO"));
             IPAddress[] addresses = Dns.GetHostAddresses(Dns.GetHostName()).Where(a => a.AddressFamily == System.Net.Sockets.AddressFamily.InterNetwork).ToArray();
 
