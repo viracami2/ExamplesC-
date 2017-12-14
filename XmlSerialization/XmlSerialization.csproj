@@ -99,12 +99,10 @@
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="App_Data\person.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
+    <Analyzer Include="..\packages\RefactoringEssentials.5.4.0\analyzers\dotnet\RefactoringEssentials.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Analyzer Include="..\packages\RefactoringEssentials.5.4.0\analyzers\dotnet\RefactoringEssentials.dll" />
+    <Folder Include="App_Data\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
