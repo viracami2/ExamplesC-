@@ -1,5 +1,5 @@
-XmlSerialization/bin/**/*
 packages/**/*
+XmlSerialization/bin/**/*
 XmlSerialization/obj/**/*
 
 
