@@ -6,7 +6,7 @@ using System.Runtime.Caching;
 namespace XmlSerialization
 {
 
-	public static class ChachingCachan//RepositoryBaseCache
+	public static class ChachingCachan
 	{
 		private static readonly ObjectCache _cache = MemoryCache.Default;
 
@@ -16,7 +16,7 @@ namespace XmlSerialization
 			get
 			{
 				if (_expirationInMinutes == 0)
-				{
+				{           /*variable en el config que nos dira la cantidad de minutos que la cache guardara los datos */
 					_expirationInMinutes = Convert.ToDouble(ConfigurationManager.AppSettings.Get("Cache.Expiration.Minutes"));
 					if (_expirationInMinutes == 0)
 					{

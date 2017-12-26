@@ -14,7 +14,7 @@ namespace XmlSerialization
 {
 	class Program
 	{
-		private const string xmlFile = "person.xml";
+		private const string xmlFile = "Data.xml";
 		string dat = "";
 
 		#region Methods static
@@ -29,25 +29,18 @@ namespace XmlSerialization
 
 			return firstAsyncStepExecuted;
 		}
-		private static void SaveCacheFirstAsyncStepExecuted()
+		private static void SaveCacheFirstAsyncStepExecuted(string dataaGuardar )
 		{
 			var key = ChachingCachan.GetKeyName(cacheKeyName: CacheKeyNameEnum.hayCache, cacheKeyParams: new object[] { "?¿" });
-			ChachingCachan.Add(key: key, result: "datos a guardar en  cache", expirationInMinutes: 1);
+			ChachingCachan.Add(key: key, result: dataaGuardar, expirationInMinutes: 1);
 		}
 
 		#endregion
 
 		static void Main(string[] args)
 		{
-			//var cacheKey = "validarCupon.NumeroDeDocumento";
-			//var cTime = DateTime.Now.AddMinutes(1);
-			//var cExp = System.Web.Caching.Cache.NoSlidingExpiration;
-			//var cPri = System.Web.Caching.CacheItemPriority.Normal;
-			//var cacheObject = HttpContext.Current.Cache.Get(cacheKey);
-
-
-
-			SaveCacheFirstAsyncStepExecuted();
+			
+			SaveCacheFirstAsyncStepExecuted("Esto se guardara en cache");
 			var datoCacheado =GetCacheFirstAsyncStepExecuted().ToString();
 
 			///////////////////
@@ -75,10 +68,9 @@ namespace XmlSerialization
 
 			JObject xdato = libroRaiz.ToString().XmlAJson(true);
 
-			//Manera de obtener datos
-			//  var nombreUno = xdato["Persons"]["Person"][2]["First"].ToString();
+			//Manera de obtener datos	  			
 			//  var nombreDos = xdato["Persons"]["Person"][1]["First"].ToString();
-			foreach (var item in xdato["Persons"]["Person"])
+			foreach (var item in xdato["CD"])
 			{
 				Console.WriteLine($"Nombre : {item["First"]}");
 			}
