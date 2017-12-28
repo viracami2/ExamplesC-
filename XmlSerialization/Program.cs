@@ -3,7 +3,6 @@
 using Newtonsoft.Json.Linq;
 using System;
 using System.IO;
-using System.Web;
 using System.Xml.Linq;
 using System.Xml.Serialization;
 using XmlSerialization.Utility;
@@ -19,7 +18,7 @@ namespace XmlSerialization
 
 		#region Methods static
 
-		private static object  GetCacheFirstAsyncStepExecuted()
+		private static object GetCacheFirstAsyncStepExecuted()
 		{
 			var key = ChachingCachan.GetKeyName(cacheKeyName: CacheKeyNameEnum.hayCache, cacheKeyParams: new object[] { "?¿" });
 			var firstAsyncStepExecuted = ChachingCachan.Get(key);
@@ -29,7 +28,7 @@ namespace XmlSerialization
 
 			return firstAsyncStepExecuted;
 		}
-		private static void SaveCacheFirstAsyncStepExecuted(string dataaGuardar )
+		private static void SaveCacheFirstAsyncStepExecuted(string dataaGuardar)
 		{
 			var key = ChachingCachan.GetKeyName(cacheKeyName: CacheKeyNameEnum.hayCache, cacheKeyParams: new object[] { "?¿" });
 			ChachingCachan.Add(key: key, result: dataaGuardar, expirationInMinutes: 1);
@@ -39,9 +38,9 @@ namespace XmlSerialization
 
 		static void Main(string[] args)
 		{
-			
+
 			SaveCacheFirstAsyncStepExecuted("Esto se guardara en cache");
-			var datoCacheado =GetCacheFirstAsyncStepExecuted().ToString();
+			var datoCacheado = GetCacheFirstAsyncStepExecuted().ToString();
 
 			///////////////////
 			Ip ipMain = new Ip();
@@ -70,31 +69,16 @@ namespace XmlSerialization
 
 			//Manera de obtener datos	  			
 			//  var nombreDos = xdato["Persons"]["Person"][1]["First"].ToString();
-			foreach (var item in xdato["CD"])
+			Console.WriteLine($"Titulos de albunes");
+			foreach (var item in xdato["CATALOG"]["CD"])
 			{
-				Console.WriteLine($"Nombre : {item["First"]}");
+				Console.WriteLine($"Titulo : {item["TITLE"]}");
 			}
 
-			//Person restored =
-			//XmlSerializerHelper.Deserialize<Person>(xmlFile);
-			//Console.WriteLine("After deserialization: {0}", restored);
-
-			// Let's look at the generated XML
 			Console.WriteLine("----------------------------------");
-			//   using (StreamReader reader = new StreamReader(xmlFile))
-			//   {
-			//       while (!reader.EndOfStream)
-			//       {
-			//           Console.WriteLine(reader.ReadLine());
-			//       }
-			//   }
-			Console.WriteLine();
-
 			Console.WriteLine("Press enter to exit.");
 			Console.ReadLine();
 		}
-
-
 
 		public static string GetFormattedNumberStandard(object Text)
 		{

@@ -161,8 +161,11 @@
   <ItemGroup>
     <Analyzer Include="..\packages\RefactoringEssentials.5.4.0\analyzers\dotnet\RefactoringEssentials.dll" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="App_Data\" />
+    <EmbeddedResource Include="App_Data\Data.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
