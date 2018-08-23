@@ -3,3 +3,4 @@ packages/**/*
 XmlSerialization/obj/**/*
 
 
+/.vs/XmlSerialization/v15/Server/sqlite3

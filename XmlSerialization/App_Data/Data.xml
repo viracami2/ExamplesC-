@@ -7,6 +7,16 @@
         <PRICE>10.90</PRICE>
         <YEAR>1985</YEAR>
     </CD>
+
+  <CDD>
+    <TITLE>Greatest Hits</TITLE>
+    <ARTIST>Dolly Parton</ARTIST>
+    <COUNTRY>USA</COUNTRY>
+    <COMPANY>RCA</COMPANY>
+    <PRICE>9.90</PRICE>
+    <YEAR>1982</YEAR>
+  </CDD>
+  
     <CD>
         <TITLE>Hide your heart</TITLE>
         <ARTIST>Bonnie Tyler</ARTIST>

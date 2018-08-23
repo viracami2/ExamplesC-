@@ -2,7 +2,9 @@
 
 using Newtonsoft.Json.Linq;
 using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Xml.Linq;
 using System.Xml.Serialization;
 using XmlSerialization.Utility;
@@ -58,12 +60,24 @@ namespace XmlSerialization
 
 
 
-			XmlSerializer serializer = new XmlSerializer(typeof(Person));
+			//XmlSerializer serializer = new XmlSerializer(typeof(ProductAttribute));
+			XmlSerializer serializer = new XmlSerializer(typeof(List<CATALOG>), new XmlRootAttribute("CATALOG"));
+
 			//toca referenciar  System.Xml.Linq
 			var path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, $@"App_Data/{xmlFile}");
 			if (!File.Exists(path)) { throw new SystemException($"File not found: '{path}'"); }
 
 			XDocument libroRaiz = XDocument.Load(path, LoadOptions.None);
+
+			//Busquedas en XML usando LINQ 
+			var artista = (from dx in libroRaiz.Elements("CATALOG").Elements()
+						   where dx.Element("TITLE").Value.Equals("Eros")
+						   select dx).ToList();
+
+			StringReader stringReader = new StringReader(libroRaiz.ToString());
+
+			List<CATALOG> productList = (List<CATALOG>)serializer.Deserialize(stringReader);
+
 
 			JObject xdato = libroRaiz.ToString().XmlAJson(true);
 
@@ -108,4 +122,36 @@ namespace XmlSerialization
 			return ConvertedDecimalNumber;
 		}
 	}
+
+
+
+
+	public class CATALOG
+	{
+		[XmlElement(ElementName = "TITLE")]
+		public string TITLE { get; set; }
+		[XmlElement(ElementName = "ARTIST")]
+		public string ARTIST { get; set; }
+		[XmlElement(ElementName = "COUNTRY")]
+		public string COUNTRY { get; set; }
+		[XmlElement(ElementName = "COMPANY")]
+		public string COMPANY { get; set; }
+		[XmlElement(ElementName = "PRICE")]
+		public string PRICE { get; set; }
+		[XmlElement(ElementName = "YEAR")]
+		public string YEAR { get; set; }
+
+		CATALOG() { }
+		public CATALOG(XElement element)
+		{
+			TITLE = element.Element("TITLE").Value;
+			ARTIST = (string)element.Element("ARTIST").Value;
+			COUNTRY = (string)element.Element("COUNTRY ").Value;
+			COMPANY = (string)element.Element("COMPANY").Value;
+			PRICE = (string)element.Element("PRICE").Value;
+			YEAR = (string)element.Element("YEAR").Value;
+		}
+
+	}
+
 }
