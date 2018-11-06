@@ -15,7 +15,8 @@
 
 #region Using Directives
 
-using System; 
+using System;
+using System.Collections.Generic;
 
 #endregion
 
@@ -67,11 +68,17 @@ namespace XmlSerialization
          set { valor = value; }
       }
 
-    
+        private IDictionary<String, String> _AdditionalParameters;
+        public IDictionary<String, String> AdditionalParameters
+        {
+            get => _AdditionalParameters;
+            set => _AdditionalParameters= new Dictionary<string, string>(value, StringComparer.InvariantCultureIgnoreCase);
+        }
+
+
 
         public override bool plus(double sueldoPlus)
-        {
-            //if (sueldoPlus = ) { }
+        {            
            valor =sueldoPlus * 2;
             return true;
         }

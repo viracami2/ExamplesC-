@@ -16,11 +16,12 @@ namespace XmlSerialization
 	class Program
 	{
 		private const string xmlFile = "Data.xml";
-		string dat = "";
 
 		#region Methods static
 
-		private static object GetCacheFirstAsyncStepExecuted()
+		static int? dataStatic;
+
+		static object GetCacheFirstAsyncStepExecuted()
 		{
 			var key = ChachingCachan.GetKeyName(cacheKeyName: CacheKeyNameEnum.hayCache, cacheKeyParams: new object[] { "?¿" });
 			var firstAsyncStepExecuted = ChachingCachan.Get(key);
@@ -36,32 +37,95 @@ namespace XmlSerialization
 			ChachingCachan.Add(key: key, result: dataaGuardar, expirationInMinutes: 1);
 		}
 
-		#endregion
+        #endregion
+
+        public class NumerosIrregulares {
+            public const double PI= 3.14;
+
+            private int numeroMenorACien;
+
+            public int NumeroMenorACien
+            {
+                get { return numeroMenorACien; }                
+                set { numeroMenorACien = value< 100 ? value:100; }
+            }
+        }
 
 		static void Main(string[] args)
 		{
 
-			SaveCacheFirstAsyncStepExecuted("Esto se guardara en cache");
+
+             
+            //las variables constantes se pueden llamar como las staticas pero no modificar
+            Console.WriteLine(NumerosIrregulares.PI);
+            Console.WriteLine(dataStatic = 4);
+
+            NumerosIrregulares numIrre = new NumerosIrregulares(); 
+            numIrre.NumeroMenorACien = 110;
+            Console.WriteLine(numIrre.NumeroMenorACien);
+            
+
+            SaveCacheFirstAsyncStepExecuted("Esto se guardara en cache");
 			var datoCacheado = GetCacheFirstAsyncStepExecuted().ToString();
 
-			///////////////////
-			Ip ipMain = new Ip();
-			var dato = nameof(ipMain.GetClientIP);// para obtener el nombre del metodo
-			ipMain.GetClientIP();
+                //Funcion Local 
+            void MetodosObtenerIP()
+            {
+                ///////////////////
+                Ip ipMain = new Ip();
+                var dato = nameof(ipMain.GetClientIP);// para obtener el nombre del metodo
+                ipMain.GetClientIP();
+            }
+
+            MetodosObtenerIP();
 
 
 
-			object data = 5;
+
+
+           int ProbandoRefAndFuncionLocal(ref string dataTests)
+            {
+                if (dataTests.Equals("1")) { dataTests = "2"; }
+                return dataTests.Equals("1") ? 1 : 0 ;
+            }
+
+            void ProbandoOutAndFuncionLocal(out string dataTests)
+            {
+                dataTests = "2.Dos";                
+            }
+
+            string uno = "1";
+            ProbandoRefAndFuncionLocal(ref uno);
+
+            string dos = "dos";
+            ProbandoOutAndFuncionLocal(out dos);
+            Console.WriteLine($"la variable tipo 'out' es ->{dos}");
+
+
+            //Recursion.
+             void conteo(int valoraContar) {
+
+                if (valoraContar == 0) { return; }
+                conteo(valoraContar-1);
+                Console.WriteLine($"conteo {valoraContar}");
+            }
+
+            conteo(5);
+
+            object data = 5;
 			Empleado persona = new Empleado();
 			persona.plus(0.0);
 			Console.WriteLine(persona.Valor);
 
+            var dataa= new Dictionary<string, string>();
+            dataa.Add("X-KEYCONTROL", "X-KEY");
+            persona.AdditionalParameters = dataa;
 
-
-
-
-			//XmlSerializer serializer = new XmlSerializer(typeof(ProductAttribute));
-			XmlSerializer serializer = new XmlSerializer(typeof(List<CATALOG>), new XmlRootAttribute("CATALOG"));
+            //Siempre entrara porque al momento de setear el diccionario tiene un StringComparer.InvariantCultureIgnoreCase ,que hace lo case 'case-insensitive'
+            if (persona.AdditionalParameters.ContainsKey("X-KEYcontrol"))
+            {
+                Console.WriteLine("Suck!");
+            }
 
 			//toca referenciar  System.Xml.Linq
 			var path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, $@"App_Data/{xmlFile}");
@@ -74,16 +138,24 @@ namespace XmlSerialization
 						   where dx.Element("TITLE").Value.Equals("Eros")
 						   select dx).ToList();
 
+			//XmlSerializer serializer = new XmlSerializer(typeof(ProductAttribute));
+			XmlSerializer serializer = new XmlSerializer(typeof(List<CD>), new XmlRootAttribute("CATALOG"));
+
 			StringReader stringReader = new StringReader(libroRaiz.ToString());
 
-			List<CATALOG> productList = (List<CATALOG>)serializer.Deserialize(stringReader);
+			List<CD> productList =(List<CD>)serializer.Deserialize(stringReader);
+
+            //Tools para generar clase a partir del xml http://xmltocsharp.azurewebsites.net/
+         //   var dataaa= (CD)serializer.Deserialize(stringReader);
 
 
-			JObject xdato = libroRaiz.ToString().XmlAJson(true);
 
-			//Manera de obtener datos	  			
-			//  var nombreDos = xdato["Persons"]["Person"][1]["First"].ToString();
-			Console.WriteLine($"Titulos de albunes");
+            JObject xdato = libroRaiz.ToString().XmlAJson(true);
+
+            //Manera de obtener datos	  			
+            //  var nombreDos = xdato["Persons"]["Person"][1]["First"].ToString();
+
+            Console.WriteLine($"Titulos de albunes");
 			foreach (var item in xdato["CATALOG"]["CD"])
 			{
 				Console.WriteLine($"Titulo : {item["TITLE"]}");
@@ -126,9 +198,10 @@ namespace XmlSerialization
 
 
 
-	public class CATALOG
-	{
-		[XmlElement(ElementName = "TITLE")]
+    [XmlRoot(ElementName = "CD")]
+    public class CD
+    {
+        [XmlElement(ElementName = "TITLE")]
 		public string TITLE { get; set; }
 		[XmlElement(ElementName = "ARTIST")]
 		public string ARTIST { get; set; }
@@ -141,17 +214,14 @@ namespace XmlSerialization
 		[XmlElement(ElementName = "YEAR")]
 		public string YEAR { get; set; }
 
-		CATALOG() { }
-		public CATALOG(XElement element)
-		{
-			TITLE = element.Element("TITLE").Value;
-			ARTIST = (string)element.Element("ARTIST").Value;
-			COUNTRY = (string)element.Element("COUNTRY ").Value;
-			COMPANY = (string)element.Element("COMPANY").Value;
-			PRICE = (string)element.Element("PRICE").Value;
-			YEAR = (string)element.Element("YEAR").Value;
-		}
 
-	}
+    }
+
+    [XmlRoot(ElementName = "CATALOG")]
+    public class CATALOG
+    {
+        [XmlElement(ElementName = "CD")]
+        public List<CD> CD { get; set; }
+    }
 
 }
